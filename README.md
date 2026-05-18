@@ -1,6 +1,7 @@
 
-![Websitesi](https://ibb.co/WNqc3L0T)
-# Şerif Eren Bilgiç Personal Portfolio
+<p align="center">
+  <img src="https://i.ibb.co/WNqc3L0T/portfolio-preview.png" alt="Şerif Eren Bilgiç Portfolio" width="600">
+</p>
 
 This project is a modern personal portfolio website built with React and Tailwind CSS. It showcases a refreshed UI, a responsive layout, language support for Turkish and English, project cards, a contact form, and a polished landing experience.
 
