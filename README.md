@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://i.ibb.co/fVBCSs9c/image.png" alt="image" border="0"> alt="Şerif Eren Bilgiç Portfolio" width="600">
+  <img src="[https://ibb.co/QFsq7xKR" alt="image" border="0"> alt="ryzenthedev Portfolio" width="600">
 </p>
 
 This project is a modern personal portfolio website built with React and Tailwind CSS. It showcases a refreshed UI, a responsive layout, language support for Turkish and English, project cards, a contact form, and a polished landing experience.
