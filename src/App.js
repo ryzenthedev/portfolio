@@ -3,12 +3,11 @@
 import "./style/general.css"
 import 'aos/dist/aos.css';
 import 'nprogress/nprogress.css'
-// hidden author: seriferenbilgic
 
 // IMPORT PACKAGES
 
 import { useEffect } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Aos from 'aos';
 
 // IMPORT COMPONENTS
@@ -36,26 +35,6 @@ export default function App() {
   useEffect(() => {
     Aos.init({ duration: 900, once: true, mirror: false })
 
-    const handleContextMenu = (e) => e.preventDefault();
-    const handleKeyDown = (e) => {
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.key === 'u') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-        (e.ctrlKey && e.shiftKey && e.key === 'C')
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    window.addEventListener('contextmenu', handleContextMenu);
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('contextmenu', handleContextMenu);
-      window.removeEventListener('keydown', handleKeyDown);
-    };
   }, []);
 
   let user = userData()
@@ -74,6 +53,7 @@ export default function App() {
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </main>
               <Footer/>

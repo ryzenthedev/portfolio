@@ -1,10 +1,11 @@
 {
-  "name": "serif-eren-bilgic-personal-website",
+  "name": "ryzenthedev-portfolio",
   "version": "1.0.0",
-  "description": "Şerif Eren Bilgiç Kişisel Site.",
+  "description": "ryzenthedev portfolio site.",
+  "homepage": ".",
   "keywords": [
-    "seriferenbilgic",
-    "personalwebsite"
+    "ryzenthedev",
+    "portfolio"
   ],
   "main": "src/index.js",
   "dependencies": {

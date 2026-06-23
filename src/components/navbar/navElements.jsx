@@ -6,7 +6,6 @@ import { Animated } from "react-animated-css"
 import NavElement from "../../data/navbar.js"
 import { useLanguage } from "../../context/languageContext"
 
-// hidden user: seriferenbilgic
 export default function NavElements(){
 
     const [navOpened, setNavOpened] = useState(false)
@@ -36,13 +35,13 @@ export default function NavElements(){
             <div className="md:hidden">
                 <button
                     onClick={() => setNavOpened(!navOpened)}
-                    className="h-12 w-12 rounded-3xl bg-[#2563eb] text-white flex items-center justify-center transition hover:bg-[#1d4ed8]"
+                    className="h-12 w-12 rounded-3xl bg-[#0f766e] text-white flex items-center justify-center transition hover:bg-[#115e59]"
                 >
                     <BsArrowLeft size="23px"/>
                 </button>
             </div>
 
-            <Animated className="phoneNav flex sm:hidden overflow-auto justify-end bg-slate-950/90" animationIn="fadeInRight" animationOut="fadeOutRight" animationInDuration={300} animationOutDuration={500} isVisible={navOpened}>
+            <Animated className="phoneNav flex md:hidden overflow-auto justify-end bg-slate-950/90" animationIn="fadeInRight" animationOut="fadeOutRight" animationInDuration={300} animationOutDuration={500} isVisible={navOpened}>
                 <div className="relative p-5 h-full w-[85%] max-w-xs overflow-auto bg-white">
                     <div className="flex justify-between items-center w-full">
                         <button onClick={() => setNavOpened(!navOpened)} className="h-12 w-12 rounded-3xl bg-slate-900 text-white flex items-center justify-center transition hover:bg-slate-800">

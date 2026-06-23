@@ -1,48 +1,51 @@
-import React from "react"
+import React, { useRef } from "react"
 
 export default function MagicCursor(){
 
-    let childrens;
-    let MainCursor;
-    let CursorBorder;
+    const mainCursor = useRef(null)
+    const cursorBorder = useRef(null)
 
     React.useEffect(() => {
+        const main = mainCursor.current
+        const border = cursorBorder.current
 
-        childrens = document.querySelector(".cursor").childNodes
+        if (!main || !border || window.matchMedia('(pointer: coarse)').matches) {
+            return undefined
+        }
 
-        MainCursor = childrens[1]
-        CursorBorder = childrens[0]
+        const handleMouseMove = (event) => {
+            const position = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`
+            main.style.transform = position
+            border.style.transform = position
+        }
 
-        document.addEventListener('mousemove', function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            MainCursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-        });
-          
-        document.addEventListener('mousemove', function(e){
-            var x = e.clientX;
-            var y = e.clientY;
-            CursorBorder.style.left = x + 'px';
-            CursorBorder.style.top = y + 'px';
-        });
+        const handleMouseDown = () => {
+            main.classList.add('click')
+            border.classList.add('click')
+        }
 
-        document.addEventListener('mousedown', function(){
-            MainCursor.classList.add('click');
-            CursorBorder.classList.add('click')
-        });
-          
-        document.addEventListener('mouseup', function(){
-            MainCursor.classList.remove('click')
-            CursorBorder.classList.remove('click')
-        });
+        const handleMouseUp = () => {
+            main.classList.remove('click')
+            border.classList.remove('click')
+        }
+
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mousedown', handleMouseDown)
+        document.addEventListener('mouseup', handleMouseUp)
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove)
+            document.removeEventListener('mousedown', handleMouseDown)
+            document.removeEventListener('mouseup', handleMouseUp)
+        }
 
     }, [])
 
     return (
         <>
             <div className="cursor hidden sm:block">
-                <div className="main"/>
-                <div className="cursorBorder"/>
+                <div ref={mainCursor} className="main"/>
+                <div ref={cursorBorder} className="cursorBorder"/>
             </div>
         </>
     )

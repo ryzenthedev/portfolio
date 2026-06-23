@@ -2,7 +2,6 @@ import { useState } from "react"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import NavElements from "./navbar/navElements"
 import { useLanguage } from "../context/languageContext"
-// seriferenbilgic
 
 export default function Navbar(){
 
@@ -13,16 +12,14 @@ export default function Navbar(){
       <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/70">
         <div className="max-w-8xl mx-auto flex flex-wrap items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="h-12 w-12 rounded-3xl bg-[#2563eb] text-white flex items-center justify-center font-semibold text-xl">Ş</div>
+            <div className="h-12 w-12 rounded-3xl bg-[#0f766e] text-white flex items-center justify-center font-semibold text-xl">R</div>
             <div>
-              <p className="text-sm text-slate-500">Modern Personal Portfolio</p>
-              <h1 className="text-lg font-semibold text-slate-950">Şerif Eren Bilgiç</h1>
+              <p className="text-sm text-slate-500">Interface Developer</p>
+              <h1 className="text-lg font-semibold text-slate-950">ryzenthedev</h1>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <NavElements/>
-          </div>
+          <NavElements/>
 
           <div className="relative">
             <button

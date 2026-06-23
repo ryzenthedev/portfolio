@@ -13,6 +13,10 @@ export default function Contact(){
     const { t } = useLanguage()
 
     useEffect(() => {
+        document.title = t('contact.title')
+    }, [t])
+
+    useEffect(() => {
         if (!message.current) return
         message.current.style.height = "0px"
         message.current.style.height = `${message.current.scrollHeight}px`
@@ -20,7 +24,6 @@ export default function Contact(){
 
     return (
       <div className="mt-8 max-w-8xl w-11/12 sm:w-10/12 mx-auto" data-aos="fade-up">
-        <title>{t('contact.title')}</title>
 
         <div className="grid gap-8 lg:grid-cols-[0.95fr_0.85fr] items-start">
           <section className="hero-card p-8 sm:p-10">
@@ -28,7 +31,7 @@ export default function Contact(){
             <h1 className="mt-4 text-4xl font-bold text-slate-950">{t('contact.header')}</h1>
             <p className="mt-5 text-slate-600 leading-8">{t('contact.subheader')}</p>
             <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-slate-700">
-              <div className="flex items-center gap-3 text-lg font-medium"><MdOutlineEmail size="24px" /> seriferenbilgic@gmail.com</div>
+              <div className="flex items-center gap-3 text-lg font-medium"><MdOutlineEmail size="24px" /> hello@ryzenthedev.dev</div>
               <p className="mt-4 text-sm text-slate-600">Mesajınızı bırakın, en kısa sürede dönüş yapayım.</p>
             </div>
           </section>
@@ -39,29 +42,35 @@ export default function Contact(){
               setStatus({type: "WAIT"})
               setError(null)
 
-              let sendedData = await fetch("https://formspree.io/f/xaykrwpy", {
-                method: "POST",
-                body: JSON.stringify({
-                  username: event.target.username.value,
-                  email: event.target.email.value,
-                  message: event.target.message.value
-                }),
-                headers: {
-                  'Accept': 'application/json'
-                }
-              })
+              try {
+                let sendedData = await fetch("https://formspree.io/f/xaykrwpy", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    username: event.target.username.value,
+                    email: event.target.email.value,
+                    message: event.target.message.value
+                  }),
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+                })
 
-              if (sendedData.ok) {
-                setStatus({type: "SUCCESS"})
-              } else {
-                const result = await sendedData.json()
-                if (result.errors) {
-                  setStatus({type: "NOTHING"})
-                  setError(result.errors.map(error => error.message).join(", ") + ".")
+                if (sendedData.ok) {
+                  setStatus({type: "SUCCESS"})
                 } else {
-                  setStatus({type: "NOTHING"})
-                  setError("An unknown error occurred.")
+                  const result = await sendedData.json()
+                  if (result.errors) {
+                    setStatus({type: "NOTHING"})
+                    setError(result.errors.map(error => error.message).join(", ") + ".")
+                  } else {
+                    setStatus({type: "NOTHING"})
+                    setError("Mesaj gönderilirken beklenmeyen bir hata oluştu.")
+                  }
                 }
+              } catch {
+                setStatus({type: "NOTHING"})
+                setError("Mesaj gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.")
               }
             }}>
 
